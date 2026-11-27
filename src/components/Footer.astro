@@ -1,0 +1,38 @@
+---
+import Mail from '@lucide/astro/icons/mail';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-bg">
+  <div class="mx-auto flex max-w-[880px] flex-col gap-5 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+    <div class="space-y-1">
+      <p class="font-display text-sm font-semibold text-ink">
+        © {currentYear} Ondřej Schwarz
+      </p>
+      <p class="text-xs text-ink-faint">
+        Studijní portfolio · KISK MUNI · Design informačních služeb
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2.5">
+      <a
+        href="mailto:599703@mail.muni.cz"
+        class="inline-flex items-center gap-2 rounded-full border border-line-strong bg-bg px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-surface"
+      >
+        <Mail class="h-3.5 w-3.5 text-ink-soft" stroke-width={1.75} aria-hidden="true" />
+        <span>599703@mail.muni.cz</span>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/ondrej-schwarz/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-bg px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-surface"
+      >
+        <span>LinkedIn</span>
+        <ArrowUpRight class="h-3.5 w-3.5 text-ink-soft" stroke-width={1.75} aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</footer>

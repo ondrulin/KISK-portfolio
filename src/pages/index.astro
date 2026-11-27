@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import BookOpen from '@lucide/astro/icons/book-open';
+import Briefcase from '@lucide/astro/icons/briefcase';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import Layers from '@lucide/astro/icons/layers';
+import Mountain from '@lucide/astro/icons/mountain';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SemesterCard from '@/components/SemesterCard.astro';
+import heroPortraitImg from '@/assets/images/ondrej-portrait-hero.png';
+
+const semesters = (await getCollection('semesters')).sort(
+  (a, b) => a.data.semesterNumber - b.data.semesterNumber,
+);
+---
+
+<BaseLayout
+  title="Ondřej Schwarz · Studijní portfolio KISK"
+  description="Studijní a profesní portfolio Ondřeje Schwarze. T-shaped UX designér a student oboru Design informačních služeb na KISK MUNI."
+  activeNav="home"
+>
+  <!-- Editorial Hero -->
+  <section class="animate-section rounded-3xl border border-line bg-bg p-6 sm:p-10">
+    <div class="flex flex-col-reverse gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+      <div class="max-w-[540px] space-y-4">
+        <span class="inline-flex items-center gap-2 rounded-md border border-accent-border bg-accent-soft px-2.5 py-1 text-xs font-medium text-ink">
+          <GraduationCap class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+          <span>KISK MUNI · Design informačních služeb (2026-2028)</span>
+        </span>
+
+        <h1 class="font-display text-3xl font-semibold leading-[1.12] text-ink sm:text-[2.25rem]">
+          Ahoj, jsem Ondřej. T-shaped UX Designér co navrhuje digitální produkty.
+        </h1>
+
+        <p class="text-base leading-relaxed text-ink-soft">
+          Souběžně s praxí studuji <strong class="font-semibold text-ink">Design informačních služeb na KISKu</strong>. Rozšiřuji si přesah od obrazovek ke službám jako celku a opírám návrhy o pevné metodické základy.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a
+            href="/studium"
+            class="group inline-flex items-center gap-2.5 rounded-full bg-cta py-2 pl-5 pr-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            <span>Proč KISK a cíle studia</span>
+            <span
+              aria-hidden="true"
+              class="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-ink transition-transform duration-150 group-hover:translate-x-0.5"
+            >
+              <ArrowRight class="h-4 w-4" stroke-width={2} />
+            </span>
+          </a>
+          <a
+            href="/studium/1-semestr"
+            class="inline-flex items-center gap-2 rounded-full border border-line-strong bg-bg px-4 py-2.5 text-sm font-medium text-ink shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-ink hover:bg-surface"
+          >
+            <BookOpen class="h-4 w-4 text-ink-soft" stroke-width={1.75} aria-hidden="true" />
+            <span>Aktuální 1. semestr</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mx-auto flex w-44 shrink-0 items-end justify-center overflow-hidden rounded-3xl border border-line bg-surface px-2 pt-4 pb-0 sm:mx-0 sm:w-52">
+        <Image
+          src={heroPortraitImg}
+          alt="Portrét Ondřeje Schwarze"
+          format="webp"
+          widths={[220, 420]}
+          sizes="(max-width: 640px) 160px, 208px"
+          class="h-auto w-full object-contain object-bottom"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Focus: Semesters 1-4 -->
+  <section class="animate-section delay-1 mt-12 sm:mt-16" aria-labelledby="study-overview-heading">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-md border border-accent-border bg-accent-soft px-2.5 py-1 text-xs font-medium text-ink">
+          <Layers class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+          <span>Hlavní část portfolia</span>
+        </span>
+        <h2 id="study-overview-heading" class="mt-2.5 font-display text-2xl font-semibold text-ink sm:text-[1.75rem]">
+          Průběh studia po semestrech
+        </h2>
+        <p class="mt-1.5 max-w-[600px] text-[0.9375rem] text-ink-soft">
+          Každý semestr má vlastní přehled se <strong class="font-semibold text-ink">všemi předměty a reflexemi</strong>. Budoucí semestry jsou připravené a postupně je odemknu.
+        </p>
+      </div>
+
+      <a
+        href="/studium"
+        class="group inline-flex items-center gap-2 rounded-full border border-line-strong bg-bg px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-surface"
+      >
+        <span>Celá sekce Studium</span>
+        <ArrowRight class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" stroke-width={1.75} aria-hidden="true" />
+      </a>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {
+        semesters.map((semester) => (
+          <SemesterCard
+            semesterNumber={semester.data.semesterNumber}
+            slug={semester.data.slug}
+            title={semester.data.title}
+            period={semester.data.period}
+            status={semester.data.status}
+            summary={semester.data.summary}
+            courses={semester.data.courses}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Secondary Section Previews: Work & About -->
+  <section class="animate-section delay-2 mt-12 sm:mt-16" aria-labelledby="other-sections-heading">
+    <h2 id="other-sections-heading" class="font-display text-xl font-semibold text-ink sm:text-2xl">
+      Další části webu
+    </h2>
+
+    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <!-- Work Preview -->
+      <a
+        href="/prace"
+        class="group flex flex-col justify-between gap-5 rounded-3xl border border-line bg-bg p-6 transition-all duration-150 hover:border-ink/35 hover:bg-surface/35 active:scale-[0.995] sm:p-7"
+      >
+        <div class="space-y-3">
+          <span class="inline-flex items-center gap-2 rounded-md border border-accent-border bg-accent-soft px-2.5 py-1 text-xs font-medium text-ink">
+            <Briefcase class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+            <span>Práce a praxe</span>
+          </span>
+          <h3 class="font-display text-xl font-semibold text-ink sm:text-2xl">
+            2N, Metio Software a freelance
+          </h3>
+          <p class="text-[0.9375rem] leading-relaxed text-ink-soft">
+            Od 18 let propojuji školu s praxí. Působím jako <strong class="font-semibold text-ink">UX designer ve 2N</strong> na platformě My2N NG, pokračuji v <strong class="font-semibold text-ink">Metio Software</strong> a externě navrhuji pro <strong class="font-semibold text-ink">Permanento</strong>.
+          </p>
+        </div>
+
+        <div class="inline-flex items-center gap-2.5 text-sm font-semibold text-ink">
+          <span>Zobrazit pracovní timeline</span>
+          <span
+            aria-hidden="true"
+            class="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-ink transition-all duration-150 group-hover:translate-x-0.5 group-hover:bg-accent-strong"
+          >
+            <ArrowRight class="h-4 w-4" stroke-width={2} />
+          </span>
+        </div>
+      </a>
+
+      <!-- About Preview -->
+      <a
+        href="/o-mne"
+        class="group flex flex-col justify-between gap-5 rounded-3xl border border-line bg-bg p-6 transition-all duration-150 hover:border-ink/35 hover:bg-surface/35 active:scale-[0.995] sm:p-7"
+      >
+        <div class="space-y-3">
+          <span class="inline-flex items-center gap-2 rounded-md border border-accent-border bg-accent-soft px-2.5 py-1 text-xs font-medium text-ink">
+            <Mountain class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+            <span>O mně</span>
+          </span>
+          <h3 class="font-display text-xl font-semibold text-ink sm:text-2xl">
+            Od multimédií až do hor
+          </h3>
+          <p class="text-[0.9375rem] leading-relaxed text-ink-soft">
+            Jak mě technologie, grafika a 3D na VŠE přivedly k UX a proč ve volném čase vyrážím na <strong class="font-semibold text-ink">letní i zimní treky v horách</strong>, cestuji po světě nebo hraju deskovky.
+          </p>
+        </div>
+
+        <div class="inline-flex items-center gap-2.5 text-sm font-semibold text-ink">
+          <span>Přečíst více o mně</span>
+          <span
+            aria-hidden="true"
+            class="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-ink transition-all duration-150 group-hover:translate-x-0.5 group-hover:bg-accent-strong"
+          >
+            <ArrowRight class="h-4 w-4" stroke-width={2} />
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import BookOpen from '@lucide/astro/icons/book-open';
+import Calendar from '@lucide/astro/icons/calendar';
+import Clock from '@lucide/astro/icons/clock';
+
+interface CoursePreview {
+  code: string;
+  name: string;
+}
+
+interface Props {
+  semesterNumber: number;
+  slug: string;
+  title: string;
+  period: string;
+  status: 'active' | 'upcoming' | 'completed';
+  summary: string;
+  courses?: CoursePreview[];
+  showCourseList?: boolean;
+}
+
+const {
+  slug,
+  title,
+  period,
+  status,
+  summary,
+  courses = [],
+  showCourseList = false,
+} = Astro.props;
+
+const isUpcoming = status === 'upcoming';
+
+function formatCourseCount(count: number): string {
+  if (count === 1) return '1 předmět';
+  if (count >= 2 && count <= 4) return `${count} předměty`;
+  return `${count} předmětů`;
+}
+
+const statusLabel = status === 'completed' ? 'Dokončeno' : 'Probíhá';
+---
+
+{
+  isUpcoming ? (
+    <article
+      aria-disabled="true"
+      class="flex cursor-default select-none flex-col justify-between gap-4 rounded-3xl border border-dashed border-line-strong bg-surface p-6 sm:p-7"
+    >
+      <div class="space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink-faint">
+            <Calendar class="h-3.5 w-3.5" stroke-width={1.75} aria-hidden="true" />
+            <span>{period}</span>
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-surface-muted px-2 py-0.5 text-xs font-medium text-ink-faint">
+            <Clock class="h-3 w-3" stroke-width={1.75} aria-hidden="true" />
+            <span>Připravuje se</span>
+          </span>
+        </div>
+
+        <h3 class="font-display text-xl font-semibold text-ink-faint sm:text-2xl">
+          {title}
+        </h3>
+        <p class="text-sm leading-relaxed text-ink-faint">
+          {summary}
+        </p>
+      </div>
+
+      <p class="text-xs font-medium text-ink-faint">
+        Obsah doplním se začátkem semestru
+      </p>
+    </article>
+  ) : (
+    <a
+      href={`/studium/${slug}`}
+      class="group flex flex-col justify-between gap-5 rounded-3xl border border-line bg-bg p-6 transition-all duration-150 hover:border-ink/35 hover:bg-surface/35 active:scale-[0.995] sm:p-7"
+    >
+      <div class="space-y-3.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="inline-flex items-center gap-2 rounded-md border border-accent-border bg-accent-soft px-2.5 py-1 text-xs font-medium text-ink">
+            <span class="h-1.5 w-1.5 rounded-full bg-accent-strong" aria-hidden="true" />
+            <span>{period} · {statusLabel}</span>
+          </span>
+          {courses.length > 0 && (
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink-faint">
+              <BookOpen class="h-3.5 w-3.5" stroke-width={1.75} aria-hidden="true" />
+              <span>{formatCourseCount(courses.length)}</span>
+            </span>
+          )}
+        </div>
+
+        <h3 class="font-display text-xl font-semibold text-ink sm:text-2xl">
+          {title}
+        </h3>
+        <p class="text-[0.9375rem] leading-relaxed text-ink-soft">
+          {summary}
+        </p>
+
+        {showCourseList && courses.length > 0 && (
+          <ul
+            class="grid grid-cols-1 gap-2 pt-2 sm:grid-cols-2"
+            aria-label={`Předměty v ${title}`}
+          >
+            {courses.map((course) => (
+              <li class="flex items-center gap-2.5 rounded-xl border border-line/80 bg-surface px-3 py-2 text-xs text-ink-soft">
+                <span class="shrink-0 rounded bg-bg px-1.5 py-0.5 font-semibold text-ink">
+                  {course.code}
+                </span>
+                <span class="truncate">{course.name}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div class="inline-flex items-center gap-2.5 pt-1 text-sm font-semibold text-ink">
+        <span>Otevřít přehled předmětů</span>
+        <span
+          aria-hidden="true"
+          class="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-ink transition-all duration-150 group-hover:translate-x-0.5 group-hover:bg-accent-strong"
+        >
+          <ArrowRight class="h-4 w-4" stroke-width={2} />
+        </span>
+      </div>
+    </a>
+  )
+}

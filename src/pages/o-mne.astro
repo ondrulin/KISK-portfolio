@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import Gamepad2 from '@lucide/astro/icons/gamepad-2';
+import Layers from '@lucide/astro/icons/layers';
+import Mountain from '@lucide/astro/icons/mountain';
+import User from '@lucide/astro/icons/user';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import portraitImg from '@/assets/images/ondrej-portrait-mountains.jpg';
+import winterTrekImg from '@/assets/images/ondrej-winter-trek.jpg';
+import thailandImg from '@/assets/images/ondrej-thailand-tuktuk.jpg';
+---
+
+<BaseLayout
+  title="O mně · Ondřej Schwarz"
+  description="Příběh Ondřeje Schwarze: od technologií, her a multimediální tvorby na VŠE až k UX designu, kombinovanému studiu na KISKu, horám a cestování."
+  activeNav="about"
+>
+  <SectionHeader
+    eyebrow="Mimo obrazovku i za ní"
+    title="O mně"
+    description="Jak jsem se od her a 3D grafiky dostal k návrhu rozhraní a služeb, a kde dobíjím baterky, když zrovna nesedím u Figmy."
+    as="h1"
+  >
+    <User slot="icon" class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+  </SectionHeader>
+
+  <!-- Unified 2-Column Layout: Equal-width text blocks on the left, continuous photo column on the right -->
+  <div class="animate-section delay-1 mt-10 grid grid-cols-1 gap-6 md:grid-cols-[1fr_290px] md:items-start">
+    <!-- Left Column: Story + Hobbies (identical width) -->
+    <div class="space-y-6">
+      <section
+        aria-labelledby="story-heading"
+        class="space-y-4 rounded-3xl border border-line bg-bg p-6 text-[0.96875rem] leading-[1.72] text-ink-soft sm:p-8"
+      >
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+            <Layers class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+          </span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">Můj příběh</span>
+        </div>
+
+        <h2 id="story-heading" class="font-display text-xl font-semibold text-ink sm:text-2xl">
+          Cesta od multimédií k UX a KISKu
+        </h2>
+
+        <p>
+          Odjakživa mě bavily <strong class="font-semibold text-ink">technologie a hraní her</strong>. Právě díky nim jsem začal zkoušet vlastní multimediální tvorbu, především <strong class="font-semibold text-ink">fotografii, grafický design a 3D</strong>. Na to plynule navázalo bakalářské studium oboru Multimédia v ekonomické praxi na VŠE v Praze.
+        </p>
+
+        <p>
+          Během bakaláře se rychle ukázalo, co mě z celé šířky multimédií baví nejvíc: přemýšlet nad tím, jak lidé věci reálně používají, a <strong class="font-semibold text-ink">navrhovat srozumitelná uživatelská rozhraní</strong>. Rád propojuji teorii s praxí, proto <strong class="font-semibold text-ink">už od svých 18 let souběžně se školou pracuji v oboru</strong>.
+        </p>
+
+        <p>
+          Když jsem po bakaláři vybíral kam dál, měl jsem jasno a zamířil na <strong class="font-semibold text-ink">kombinované magisterské studium na brněnský KISK</strong>. Chci se dál rozvíjet jako <strong class="font-semibold text-ink">T-shaped designér</strong> a dívat se i za hranice obrazovek na to, jak fungují služby jako celek.
+        </p>
+      </section>
+
+      <section
+        aria-labelledby="hobbies-heading"
+        class="space-y-4 rounded-3xl border border-line bg-bg p-6 text-[0.96875rem] leading-[1.72] text-ink-soft sm:p-8"
+      >
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+            <Mountain class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+          </span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">Volný čas</span>
+        </div>
+
+        <h2 id="hobbies-heading" class="font-display text-xl font-semibold text-ink sm:text-2xl">
+          Hory, cestování a hry
+        </h2>
+
+        <p>
+          Když nejsem u počítače v práci nebo na výuce v Brně, trávím většinu času venku. Baví mě outdoorové sporty a ze všeho nejvíc <strong class="font-semibold text-ink">trekování v horách v létě i v zimě</strong> na sněhu a ledu. Stejně rád vyrážím za <strong class="font-semibold text-ink">cestováním a poznáváním nových zemí</strong> s foťákem v ruce.
+        </p>
+
+        <p class="flex items-start gap-2.5">
+          <Gamepad2 class="mt-1 h-4 w-4 shrink-0 text-ink" stroke-width={1.75} aria-hidden="true" />
+          <span>
+            Dobře si ale umím odpočinout i doma u dobrého seriálu nebo u her, ať už <strong class="font-semibold text-ink">počítačových, nebo deskových</strong> s přáteli u stolu.
+          </span>
+        </p>
+      </section>
+    </div>
+
+    <!-- Right Column: Seamless vertical stack of photos -->
+    <aside class="space-y-4" aria-label="Fotografie z hor a cest">
+      <figure class="overflow-hidden rounded-3xl border border-line bg-bg p-2">
+        <Image
+          src={portraitImg}
+          alt="Ondřej Schwarz v horách v modré péřové bundě"
+          widths={[290, 580]}
+          sizes="(max-width: 768px) 100vw, 290px"
+          class="aspect-[4/5] w-full rounded-2xl object-cover object-top"
+          loading="eager"
+        />
+        <figcaption class="px-2 pt-2.5 pb-1 text-xs text-ink-faint">
+          V horách, kde se hlava čistí nejlíp.
+        </figcaption>
+      </figure>
+
+      <figure class="overflow-hidden rounded-3xl border border-line bg-bg p-2">
+        <Image
+          src={winterTrekImg}
+          alt="Zimní horský trek po zasněženém ledovci pod modrou oblohou"
+          widths={[290, 580]}
+          sizes="(max-width: 768px) 100vw, 290px"
+          class="aspect-[4/5] w-full rounded-2xl object-cover object-bottom"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="px-2 pt-2.5 pb-1 text-xs text-ink-faint">
+          Zimní výstup v horách s batohem na zádech.
+        </figcaption>
+      </figure>
+
+      <figure class="overflow-hidden rounded-3xl border border-line bg-bg p-2">
+        <Image
+          src={thailandImg}
+          alt="Večerní pohybová fotografie tuk-tuku v rušné ulici v Thajsku"
+          widths={[290, 580]}
+          sizes="(max-width: 768px) 100vw, 290px"
+          class="aspect-[3/2] w-full rounded-2xl object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="px-2 pt-2.5 pb-1 text-xs text-ink-faint">
+          Momentka večerního provozu z cest po Thajsku.
+        </figcaption>
+      </figure>
+    </aside>
+  </div>
+</BaseLayout>

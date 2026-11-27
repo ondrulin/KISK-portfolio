@@ -1,0 +1,229 @@
+---
+import { Image } from 'astro:assets';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import Briefcase from '@lucide/astro/icons/briefcase';
+import Calendar from '@lucide/astro/icons/calendar';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import TimelineItem from '@/components/TimelineItem.astro';
+import logo2n from '@/assets/logos/2n.png';
+import logoMetio from '@/assets/logos/metio-software.png';
+import logoMuni from '@/assets/logos/muni.png';
+import logoVseFis from '@/assets/logos/vse-fis.jpg';
+---
+
+<BaseLayout
+  title="Práce a vzdělání · Ondřej Schwarz"
+  description="Pracovní zkušenosti Ondřeje Schwarze (2N, Metio Software, Permanento) a přehled vzdělání na KISK MUNI a VŠE v Praze."
+  activeNav="work"
+>
+  <SectionHeader
+    eyebrow="Praxe od 18 let · 2N, Metio Software & freelance"
+    title="Práce a vzdělání"
+    description="Rád propojuji školu s reálnými produkty, kterým se věnuji od svých 18 let. Aktuálně dělím pracovní týden mezi dvě firmy na půl úvazku a vybranou klientskou spolupráci."
+    as="h1"
+  >
+    <Briefcase slot="icon" class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+  </SectionHeader>
+
+  <!-- Work Timeline -->
+  <section class="animate-section delay-1 mt-10 max-w-[740px]" aria-labelledby="work-timeline-heading">
+    <h2 id="work-timeline-heading" class="font-display text-xl font-semibold text-ink sm:text-2xl">
+      Pracovní zkušenosti
+    </h2>
+
+    <ol class="mt-6">
+      <TimelineItem
+        company="2N"
+        role="UX Designer"
+        period="od října 2026 · současnost"
+        workload="půl úvazek"
+        logo={logo2n}
+        isCurrent={true}
+        summary='Součást týmu zaměřujícího se na <strong class="font-semibold text-ink">Calling aspekt</strong> nově vznikající platformy <strong class="font-semibold text-ink">My2N NG</strong>, která komunikuje s fyzickými zařízeními.'
+      >
+        <ul class="list-disc space-y-1.5 pl-5">
+          <li>
+            Návrh <strong class="font-semibold text-ink">uživatelských toků a rozhraní pro volání</strong> a správu komunikace v rámci nové generace platformy My2N NG.
+          </li>
+          <li>
+            Propojování softwarové platformy s chováním a stavy <strong class="font-semibold text-ink">fyzických interkomů a přístupových zařízení</strong> v reálném provozu.
+          </li>
+          <li>
+            Úzká spolupráce s produktovým a vývojovým týmem na srozumitelnosti <strong class="font-semibold text-ink">komplexních B2B scénářů</strong>.
+          </li>
+        </ul>
+      </TimelineItem>
+
+      <TimelineItem
+        company="Metio Software"
+        role="UX/UI Designer & Grafik"
+        period="od roku 2022 · současnost"
+        workload="půl úvazek"
+        logo={logoMetio}
+        isCurrent={true}
+      >
+        <ul class="list-disc space-y-1.5 pl-5">
+          <li>
+            <strong class="font-semibold text-ink">End-to-end návrh</strong> klientských webových platforem, SaaS systémů a mobilních aplikací.
+          </li>
+          <li>
+            <strong class="font-semibold text-ink">Projektový management</strong> a koordinace vývoje menších softwarových projektů.
+          </li>
+          <li>
+            Správa a údržba stávajících <strong class="font-semibold text-ink">design systémů</strong> a škálovatelných UI komponent.
+          </li>
+          <li>
+            Interaktivní prototypování ve Figmě a <strong class="font-semibold text-ink">rychlé prototypování s využitím AI (BMAD)</strong>.
+          </li>
+          <li>
+            <strong class="font-semibold text-ink">Owner simulační hry Šéfe, nezlob se</strong> se zodpovědností za informační architekturu a UI aplikace pro trénink projektového řízení a kapacitního plánování.
+          </li>
+        </ul>
+      </TimelineItem>
+
+      <TimelineItem
+        company="OSVČ"
+        role="Freelance Product Designer"
+        period="Průběžně"
+      >
+        <ul class="list-disc space-y-1.5 pl-5">
+          <li>
+            Průběžný produktový a UX/UI návrh pro projekt{' '}
+            <a
+              href="https://permanento.cz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-0.5 font-semibold text-ink underline decoration-accent-strong decoration-2 underline-offset-3 hover:bg-accent-soft"
+            >
+              <span>Permanento</span>
+              <ArrowUpRight class="h-3.5 w-3.5" stroke-width={2} aria-hidden="true" />
+            </a>
+            , kde se podílím na podobě a rozvoji webové platformy.
+          </li>
+          <li>
+            <strong class="font-semibold text-ink">Uživatelský výzkum, wireframing</strong> a návrhy konverzních webových rozhraní.
+          </li>
+          <li>
+            <strong class="font-semibold text-ink">Art-direction, tvorba vizuální identity</strong> a produkční příprava digitálních materiálů.
+          </li>
+        </ul>
+      </TimelineItem>
+    </ol>
+  </section>
+
+  <!-- Education -->
+  <section class="animate-section delay-2 mt-14 max-w-[740px]" aria-labelledby="education-heading">
+    <div class="flex items-center gap-2.5">
+      <GraduationCap class="h-5 w-5 text-ink" stroke-width={1.75} aria-hidden="true" />
+      <h2 id="education-heading" class="font-display text-xl font-semibold text-ink sm:text-2xl">
+        Vzdělání
+      </h2>
+    </div>
+
+    <div class="mt-5 grid grid-cols-1 gap-4">
+      <!-- KISK MUNI -->
+      <article class="rounded-3xl border border-line bg-bg p-6 sm:p-7">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-line bg-bg">
+            <Image
+              src={logoMuni}
+              alt="Masarykova univerzita ikona"
+              widths={[48, 96]}
+              sizes="48px"
+              format="webp"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <p class="text-xs font-semibold uppercase tracking-wider text-ink-faint">
+                Masarykova univerzita v Brně · KISK
+              </p>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink-faint">
+                <span class="h-2 w-2 rounded-full bg-accent-strong" aria-hidden="true" />
+                <span>2026-2028 · Kombinované studium</span>
+              </span>
+            </div>
+
+            <h3 class="mt-1 font-display text-xl font-semibold text-ink">
+              Design informačních služeb (Mgr.)
+            </h3>
+
+            <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
+              Magisterské studium zaměřené na <strong class="font-semibold text-ink">design služeb, teoretické rámce designového myšlení</strong>, uživatelský výzkum a přesah mimo čistě digitální rozhraní.
+            </p>
+
+            <div class="mt-4">
+              <a
+                href="/studium"
+                class="group inline-flex items-center gap-2 text-sm font-semibold text-ink"
+              >
+                <span>Detail studia a semestry</span>
+                <span
+                  aria-hidden="true"
+                  class="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-ink transition-all duration-150 group-hover:translate-x-0.5 group-hover:bg-accent-strong"
+                >
+                  <ArrowRight class="h-3.5 w-3.5" stroke-width={2} />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- VŠE FIS -->
+      <article class="rounded-3xl border border-line bg-bg p-6 sm:p-7">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-line bg-bg">
+            <Image
+              src={logoVseFis}
+              alt="Fakulta informatiky a statistiky VŠE ikona"
+              widths={[48, 96]}
+              sizes="48px"
+              format="webp"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <p class="text-xs font-semibold uppercase tracking-wider text-ink-faint">
+                Vysoká škola ekonomická v Praze · FIS
+              </p>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-ink-faint">
+                <Calendar class="h-3.5 w-3.5" stroke-width={1.75} aria-hidden="true" />
+                <span>2023-2026</span>
+              </span>
+            </div>
+
+            <h3 class="mt-1 font-display text-xl font-semibold text-ink">
+              Multimédia v ekonomické praxi (Bc.)
+            </h3>
+
+            <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
+              <strong class="font-semibold text-ink">Grafický a digitální design, UX výzkum</strong>, multimediální produkce a marketing. Studium, během kterého jsem si potvrdil zaměření na návrh uživatelských rozhraní a UX.
+            </p>
+
+            <div class="mt-4 rounded-2xl border border-line bg-surface p-4 sm:p-5">
+              <p class="text-xs font-semibold uppercase tracking-wider text-ink-faint">
+                Bakalářská práce (2026) · Double Diamond & Behavioral UX
+              </p>
+              <h4 class="mt-1 font-display text-base font-semibold text-ink">
+                Dark patterns
+              </h4>
+              <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
+                Výzkum manipulativních vzorů podle <strong class="font-semibold text-ink">taxonomie C. M. Graye</strong>. Výstupem byl <strong class="font-semibold text-ink">interaktivní prototyp edukační webové platformy</strong> zaměřené na osvětu veřejnosti o neetických praktikách v digitálních rozhraních.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

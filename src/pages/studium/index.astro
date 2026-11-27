@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Compass from '@lucide/astro/icons/compass';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import ImageIcon from '@lucide/astro/icons/image';
+import Layers from '@lucide/astro/icons/layers';
+import Lightbulb from '@lucide/astro/icons/lightbulb';
+import Target from '@lucide/astro/icons/target';
+import User from '@lucide/astro/icons/user';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import SemesterCard from '@/components/SemesterCard.astro';
+import lenovoRenderImg from '@/assets/images/multimedia-lenovo-3d.jpg';
+import pcbMacroImg from '@/assets/images/multimedia-pcb-macro.jpg';
+
+const semesters = (await getCollection('semesters')).sort(
+  (a, b) => a.data.semesterNumber - b.data.semesterNumber,
+);
+---
+
+<BaseLayout
+  title="Studium na KISKu · Ondřej Schwarz"
+  description="Motivace, očekávání, cíle a přehled semestrů magisterského studia Design informačních služeb na KISK MUNI."
+  activeNav="study"
+>
+  <SectionHeader
+    eyebrow="KISK MUNI · Kombinované magisterské studium"
+    title="Studium Designu informačních služeb"
+    description="Proč jsem po multimédiích zamířil na KISK, co od dvou let v Brně očekávám a jak se postupně vyvíjí mé studijní portfolio."
+    as="h1"
+  >
+    <GraduationCap slot="icon" class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+  </SectionHeader>
+
+  <!-- Narrative Blocks + Multimedia Visual Showcase -->
+  <section class="animate-section delay-1 mt-10 max-w-[720px] space-y-6" aria-label="Úvodní zamyšlení ke studiu">
+    <!-- 01: Who I am -->
+    <article id="uvodem" class="scroll-mt-24 rounded-3xl border border-line bg-bg p-6 sm:p-8">
+      <div class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+          <User class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">01 · Osobní profil</span>
+      </div>
+
+      <h2 class="mt-3.5 font-display text-xl font-semibold text-ink sm:text-2xl">
+        Od multimédií k návrhu produktů a služeb
+      </h2>
+
+      <div class="mt-3 space-y-3 text-[0.96875rem] leading-[1.7] text-ink-soft">
+        <p>
+          Působím jako produktový a UX/UI designér a nejvíc se vnímám jako <strong class="font-semibold text-ink">T-shaped generalista</strong>. Baví mě rozumět zadání do šířky od <strong class="font-semibold text-ink">uživatelského výzkumu a informační architektury</strong> až po samotné rozhraní a spolupráci s vývojem, ale zároveň si držet pevnou oporu v digitálním designu.
+        </p>
+        <p>
+          Odmalička mě táhly technologie a hry, přes které jsem se dostal k <strong class="font-semibold text-ink">fotografii, grafickému designu a 3D tvorbě</strong> a následně na obor Multimédia v ekonomické praxi na VŠE v Praze. Rád propojuji teorii s reálnými projekty, proto <strong class="font-semibold text-ink">pracuji v oboru souběžně se školou už od svých 18 let</strong>.
+        </p>
+      </div>
+
+      <!-- Multimedia Creations Strip inside/after Intro -->
+      <div class="mt-6 rounded-2xl border border-line bg-surface p-4 sm:p-5">
+        <div class="flex items-center gap-2 text-xs font-medium text-ink">
+          <ImageIcon class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+          <span>Ukázky mé dřívější digitální tvorby ze studia multimédií na VŠE</span>
+        </div>
+
+        <div class="mt-3.5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+          <figure class="overflow-hidden rounded-xl border border-line bg-bg p-1.5">
+            <Image
+              src={lenovoRenderImg}
+              alt="3D produktová vizualizace notebooku Lenovo"
+              widths={[340, 640]}
+              sizes="(max-width: 640px) 100vw, 310px"
+              class="aspect-[16/10] w-full rounded-lg object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="px-1.5 pt-2 pb-0.5 text-xs text-ink-faint">
+              3D produktová vizualizace a práce se světlem
+            </figcaption>
+          </figure>
+
+          <figure class="overflow-hidden rounded-xl border border-line bg-bg p-1.5">
+            <Image
+              src={pcbMacroImg}
+              alt="Detailní makro fotografie červeného plošného spoje s elektronickými součástkami"
+              widths={[340, 640]}
+              sizes="(max-width: 640px) 100vw, 310px"
+              class="aspect-[16/10] w-full rounded-lg object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="px-1.5 pt-2 pb-0.5 text-xs text-ink-faint">
+              Technická makro fotografie detailu plošného spoje
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02: Motivation -->
+    <article id="motivace" class="scroll-mt-24 rounded-3xl border border-line bg-bg p-6 sm:p-8">
+      <div class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+          <Compass class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">02 · Motivace</span>
+      </div>
+
+      <h2 class="mt-3.5 font-display text-xl font-semibold text-ink sm:text-2xl">
+        Proč jsem si vybral právě KISK
+      </h2>
+
+      <div class="mt-3 space-y-3 text-[0.96875rem] leading-[1.7] text-ink-soft">
+        <p>
+          Po dokončení bakaláře pro mě byl kombinovaný KISK a profilace <strong class="font-semibold text-ink">Design informačních služeb</strong> přirozeným dalším krokem. Na VŠE jsem si ujasnil, že se chci profilovat jako designér, ale zároveň jsem nechtěl <strong class="font-semibold text-ink">zůstat uzavřený jen u obrazovek a čistě digitálních produktů</strong>.
+        </p>
+        <p>
+          Zajímá mě design v širším měřítku: chci pochopit, <strong class="font-semibold text-ink">jak se navrhují i jiné typy služeb</strong>, otevřít si obzory do souvisejících oborů a potkávat lidi, kteří přemýšlejí nad informačními procesy, daty nebo facilitací z jiného úhlu než v běžné IT firmě.
+        </p>
+      </div>
+    </article>
+
+    <!-- 03: Expectations -->
+    <article id="ocekavani" class="scroll-mt-24 rounded-3xl border border-line bg-bg p-6 sm:p-8">
+      <div class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+          <Lightbulb class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">03 · Očekávání</span>
+      </div>
+
+      <h2 class="mt-3.5 font-display text-xl font-semibold text-ink sm:text-2xl">
+        Co si od studia v Brně slibuji
+      </h2>
+
+      <div class="mt-3 space-y-3 text-[0.96875rem] leading-[1.7] text-ink-soft">
+        <p>
+          Od KISKu čekám hlavně oporu pro svou praxi v podobě <strong class="font-semibold text-ink">hlubších teoretických znalostí metodik a designového myšlení</strong>. V komerčních projektech člověk často řeší zadání pod tlakem času, zatímco ve škole chci mít prostor zpomalit, jít víc do hloubky a ptát se, proč daný postup funguje.
+        </p>
+        <p>
+          Stejně tak očekávám, že si osahám disciplíny, ke kterým se v běžné produktové práci tolik nedostanu, ať už jde o <strong class="font-semibold text-ink">vizualizaci dat, facilitaci nebo návrh služeb přesahujících jedno rozhraní</strong>.
+        </p>
+      </div>
+    </article>
+
+    <!-- 04: Goal -->
+    <article id="cil" class="scroll-mt-24 rounded-3xl border border-line bg-bg p-6 sm:p-8">
+      <div class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-border bg-accent-soft text-ink">
+          <Target class="h-4 w-4" stroke-width={1.75} aria-hidden="true" />
+        </span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">04 · Cíl studia</span>
+      </div>
+
+      <h2 class="mt-3.5 font-display text-xl font-semibold text-ink sm:text-2xl">
+        Kam mě má studium posunout
+      </h2>
+
+      <div class="mt-3 space-y-3 text-[0.96875rem] leading-[1.7] text-ink-soft">
+        <p>
+          Až školu dokončím, chci odcházet jako <strong class="font-semibold text-ink">sebevědomý designér s přesahem do velké šířky odvětví</strong>, který si poradí i se zadáním mimo svou dosavadní digitální komfortní zónu.
+        </p>
+        <p>
+          Mým cílem je mít <strong class="font-semibold text-ink">pevný přehled v teoretických rámcích jednotlivých metod</strong> a především praktickou jistotu v tom, kdy po které sáhnout a jak ji smysluplně využít při řešení problémů různých nátur.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Semesters 1-4 Hub -->
+  <section class="animate-section delay-2 mt-14 sm:mt-16" aria-labelledby="semesters-heading">
+    <SectionHeader
+      eyebrow="2026-2028"
+      title="Semestry 1 až 4"
+      description="První semestr právě běží a postupně do něj doplním reflexe ke všem osmi předmětům. Další semestry jsou připravené v neaktivním stavu."
+      as="h2"
+      animate={false}
+    >
+      <Layers slot="icon" class="h-3.5 w-3.5 text-ink" stroke-width={1.75} aria-hidden="true" />
+    </SectionHeader>
+
+    <div class="mt-6 grid grid-cols-1 gap-4">
+      {
+        semesters.map((semester) => (
+          <SemesterCard
+            semesterNumber={semester.data.semesterNumber}
+            slug={semester.data.slug}
+            title={semester.data.title}
+            period={semester.data.period}
+            status={semester.data.status}
+            summary={semester.data.summary}
+            courses={semester.data.courses}
+            showCourseList={semester.data.status !== 'upcoming'}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
